@@ -2,7 +2,7 @@
 
 ![Logo del Curso](link_a_tu_logo.png)
 
-Bienvenido al repositorio oficial del Curso de Algoritmos y Estructuras de Datos. En este curso, exploraremos los fundamentos de las estructuras de datos y los algoritmos, proporcionando una base sólida para tu desarrollo como programador. Este repositorio contiene recursos, ejemplos de código y materiales del curso.
+Bienvenido al repositorio del Curso de Algoritmos y Estructuras de Datos del alumno Arbués Enrique Pérez Villegas. En este curso, exploraremos los fundamentos de las estructuras de datos y los algoritmos, proporcionando una base sólida para tu desarrollo como programador. Este repositorio contiene recursos, ejemplos de código y materiales del curso.
 
 ## Contenido
 
