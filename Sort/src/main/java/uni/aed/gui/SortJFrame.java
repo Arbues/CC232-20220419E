@@ -1,7 +1,9 @@
 package uni.aed.gui;
 
 import javax.swing.DefaultListModel;
-import static uni.aed.ordenamiento.Burbuja.burbuja;
+import uni.aed.ordenamiento.Burbuja;
+import uni.aed.ordenamiento.Burbuja.*;
+import uni.aed.ordenamiento.Ordenamiento;
 
 public class SortJFrame extends javax.swing.JFrame {
     DefaultListModel modeloList1=new DefaultListModel();
@@ -25,6 +27,13 @@ public class SortJFrame extends javax.swing.JFrame {
         BtnOrdenar = new javax.swing.JButton();
         BtnCerrar = new javax.swing.JButton();
         BtnLimpiar = new javax.swing.JButton();
+        lblIntercambios = new javax.swing.JLabel();
+        lblComparaciones = new javax.swing.JLabel();
+        txtIntercambios = new javax.swing.JTextField();
+        txtComparaciones = new javax.swing.JTextField();
+        cbMetodo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        CheckBoxAscending = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Algoritmo de Ordenamiento de la burbuja");
@@ -34,6 +43,11 @@ public class SortJFrame extends javax.swing.JFrame {
         txtValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtValorActionPerformed(evt);
+            }
+        });
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorKeyTyped(evt);
             }
         });
 
@@ -62,59 +76,110 @@ public class SortJFrame extends javax.swing.JFrame {
             }
         });
 
+        lblIntercambios.setText("#intercambios");
+
+        lblComparaciones.setText("#comparaciones");
+
+        txtIntercambios.setEditable(false);
+        txtIntercambios.setText("jTextField1");
+
+        txtComparaciones.setEditable(false);
+        txtComparaciones.setText("jTextField1");
+
+        cbMetodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Burbuja", "Insercion", "BinaryInsercion", "Seleccion" }));
+
+        jLabel2.setText("Mtodo Ordenamiento:");
+
+        CheckBoxAscending.setText("ascendente?");
+        CheckBoxAscending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBoxAscendingActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(CheckBoxAscending, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BtnOrdenar))
+                                        .addGap(107, 107, 107)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(lblComparaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblIntercambios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(53, 53, 53)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtIntercambios, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtComparaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(41, 41, 41))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BtnLimpiar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtnCerrar)
-                                .addGap(52, 52, 52))
+                                .addGap(452, 452, 452)
+                                .addComponent(BtnCerrar)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(BtnOrdenar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))))))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(cbMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 116, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(149, 149, 149)
+                                .addComponent(BtnOrdenar)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckBoxAscending)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(BtnOrdenar))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblIntercambios)
+                            .addComponent(txtIntercambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblComparaciones)
+                    .addComponent(txtComparaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCerrar)
                     .addComponent(BtnLimpiar))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -136,16 +201,59 @@ public class SortJFrame extends javax.swing.JFrame {
         for(int i=0;i<N;i++){
             X[i]=Integer.parseInt(ListaInicial.getModel().getElementAt(i));
         }
-        burbuja(X);
-        modeloList2.removeAllElements();
-        for(int i=0;i<N;i++){
-            modeloList2.addElement(X[i]);
+        Ordenamiento algo =new Ordenamiento();
+        
+        String selectedAlgorithm = (String) cbMetodo.getSelectedItem();
+        switch (selectedAlgorithm) {
+            case "Burbuja":
+                algo.burbuja(X);
+               
+                break;
+
+                
+            case "Insercion":
+                algo.insercion(X);
+                break;
+                
+            case "BinaryInsercion":
+                algo.insercion(X);
+                break;
+                
+            case "Seleccion":
+                algo.seleccion4c(X);
+                break;
+            default:
+                break;
         }
+        modeloList2.removeAllElements();
+        if(CheckBoxAscending.isSelected()){
+            for(int i=0;i<N;i++){
+                modeloList2.addElement(X[i]);
+            }
+        }else{
+            for(int i=N-1;i>=0;i--){
+                modeloList2.addElement(X[i]);
+            }
+        }
+       txtComparaciones.setText(Integer.toString(algo.getnComparaciones()));
+        txtIntercambios.setText(Integer.toString(algo.getnIntercambios()));
     }//GEN-LAST:event_BtnOrdenarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
         dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_BtnCerrarActionPerformed
+
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        int key =evt.getKeyChar();
+        boolean numero=key>=48 && key<=57;
+        if(!numero){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtValorKeyTyped
+
+    private void CheckBoxAscendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxAscendingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBoxAscendingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,11 +294,18 @@ public class SortJFrame extends javax.swing.JFrame {
     private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnLimpiar;
     private javax.swing.JButton BtnOrdenar;
+    private javax.swing.JCheckBox CheckBoxAscending;
     private javax.swing.JList<String> ListaInicial;
     private javax.swing.JList<String> ListaOrdenada;
+    private javax.swing.JComboBox<String> cbMetodo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblComparaciones;
+    private javax.swing.JLabel lblIntercambios;
+    private javax.swing.JTextField txtComparaciones;
+    private javax.swing.JTextField txtIntercambios;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
