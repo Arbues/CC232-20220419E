@@ -232,11 +232,13 @@
     <Component class="javax.swing.JComboBox" name="cbMetodo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="6">
             <StringItem index="0" value="Burbuja"/>
             <StringItem index="1" value="Insercion"/>
             <StringItem index="2" value="BinaryInsercion"/>
             <StringItem index="3" value="Seleccion"/>
+            <StringItem index="4" value="QuickSort"/>
+            <StringItem index="5" value="ShellSort"/>
           </StringArray>
         </Property>
       </Properties>

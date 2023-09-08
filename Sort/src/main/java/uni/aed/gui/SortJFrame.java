@@ -86,7 +86,7 @@ public class SortJFrame extends javax.swing.JFrame {
         txtComparaciones.setEditable(false);
         txtComparaciones.setText("jTextField1");
 
-        cbMetodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Burbuja", "Insercion", "BinaryInsercion", "Seleccion" }));
+        cbMetodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Burbuja", "Insercion", "BinaryInsercion", "Seleccion", "QuickSort", "ShellSort" }));
 
         jLabel2.setText("Mtodo Ordenamiento:");
 
@@ -209,16 +209,18 @@ public class SortJFrame extends javax.swing.JFrame {
                 algo.burbuja(X);
                
                 break;
-
+            case "ShellSort":
+                algo.shellSort(X);
                 
             case "Insercion":
                 algo.insercion(X);
                 break;
                 
             case "BinaryInsercion":
-                algo.insercion(X);
+                algo.binaryInsertion(X);
                 break;
-                
+            case "QuickSort":
+                algo.quicksort(X);
             case "Seleccion":
                 algo.seleccion4c(X);
                 break;

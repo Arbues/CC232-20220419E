@@ -93,7 +93,7 @@ nComparaciones++;
         return arr;
     }
     
-    public Integer[]seleccion4c(Integer[] X){
+    public Integer[] seleccion4c(Integer[] X){
         int aux,k;
         for(int i=0;i<X.length-1;i++){
             aux=X[i];
@@ -112,6 +112,67 @@ nComparaciones++;
         return X;
     }
     
+    public void quicksort(Integer[] X) {
+        nComparaciones=0;
+        nIntercambios=0;
+        if (X == null || X.length <= 1) {
+            return; // La matriz ya está ordenada o es vacía
+        }
+
+        quicksort(X, 0, X.length - 1);
+    }
+
+    private void quicksort(Integer[] X, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(X, low, high);
+            quicksort(X, low, pivotIndex - 1);
+            quicksort(X, pivotIndex + 1, high);
+        }
+    }
+
+    private int partition(Integer[] X, int low, int high) {
+
+        int pivot = X[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            nComparaciones++;
+            if (X[j] < pivot) {
+                i++;
+                swap(X, i, j);
+                nIntercambios++;
+            }
+        }
+
+        swap(X, i + 1, high);
+        nIntercambios++;
+        return i + 1;
+    }
+
+    private void swap(Integer[] X, int i, int j) {
+        int temp = X[i];
+        X[i] = X[j];
+        X[j] = temp;
+    }
     
-    
+    public Integer[] shellSort(Integer[] X) {
+        if (X == null || X.length <= 1) {
+            return X; // La matriz ya está ordenada o es vacía
+        }
+
+        int n = X.length;
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i++) {
+                int temp = X[i];
+                int j;
+                for (j = i; j >= gap && X[j - gap] > temp; j -= gap) {
+                    nComparaciones++;
+                    X[j] = X[j - gap];
+                    nIntercambios++;
+                }
+                X[j] = temp;
+            }
+        }
+        return X;
+    }
 }
