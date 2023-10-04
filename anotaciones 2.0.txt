@@ -1,0 +1,60 @@
+maven-proyect:
+	brinda una estructura organizada, una gestión de dependencias simplificada, automatización de tareas de construcción y generación de informes útiles.
+
+
+-Coonstructor del jform: debe ir todo lo que quieres que aparesca al principio de la ventana
+-capturar el texto: double num1= Double.parseDouble(fieldname.getText());
+-imprimir una variable en el label: labelname.setText(string.valueOf(resultado)) ---creo q es fielname
+-requestFocusInWindow(): para enfocar en un boton o en un campo
+-fieldname.selectAll(): para seleccionar todo el txto en un campo
+-botonName.doClick(): para presionar el boton "virtualmente"
+-string.charAt(0): obtener el 1 caracter de un string
+-TODOS LOS MODELOS SE COLOCAN EN EL CONSTRUCTOR DEL JFRAME
+
+CUADROS EMERGENTES DE DIALOGO:
+	-libreria: import javax.swing.JOptionPane;
+        -JOptionPane.showMessageDialog(campo_name, message, titulo,JOptionPane.ERROR_MESSAGE);
+	-campo_name puede ser null para q se active en un boton x ejemplo
+	- ERROR_MESSAGE - INFORMATION_MESSAGE - QUESTION_MESSAGE - etc
+
+-botonNameActionPerformed: metodo q se ejecuta al presiona el boton
+-botonNameKeyTyped: para a la espectativa de todas las teclas ingresadas.
+	char c = evt.getKeyChar(); cualquier tecla del teclado lo guarda es codigo ascii en c
+
+TABLAS:
+	-libreria: import javax.swing.table.DefaultTableModel;
+	-DefaultTableModel mod = new DefaultTableModel(datos, cols); datos=cuerpo cols=encavezados
+	-dentro del constructor: miTabla.setModel(mod); para q la tabla q esta en desing se muestre con el modelo
+
+botonName.setEnabled(True) lo hace indisponible
+botonName.setVisible(False) lo hace invisible literal
+
+COMBOBOX: el desplegable
+	-Metodos:
+		rbNombreActionPerformed:cuando es sleecionado
+	-Instanciarlo:
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(colores); 
+		desplegable.setModel(modelo); 
+		#colores puede ser una cadena de cualquiercosa, al momento de 	aparecer en el despleglaba solo llamara al toString
+	-comboboxName.getItemcount()>0: cuenta los items dentro del desplegable
+	-comboboxName.getSelectedIndex(): devuelve el índice de la opción seleccionada actualmente comenzando desde el 0, si no hay nada devuelme -1
+	-combobox.setSelectedItem(Object item): es el focus solo q en el item q ya esta en la lista
+	-removeAllItem(): elimina todas las opciones
+	-addItem(Object item): agrega el item a la lista de opciones
+	-removeItemAt(int index): Este método elimina la opción en el índice especificado
+	-comboboxName.setSlected(flase): deseleciona el item
+Jlist:lista para escojer alguna
+	-getSelectedIndex(): Este método devuelve el índice del elemento seleccionado actualmente
+	-getSelectedValue(): Este método devuelve el valor del elemento seleccionado actualmente
+	-DefaultListModel modeloList1=new DefaultListModel(); con el modelo se trabaja mejor
+
+JRadioButton: para seleccionar o no
+	-isSelected():si es selecionado en ese momento
+
+
+
+
+
+
+
+

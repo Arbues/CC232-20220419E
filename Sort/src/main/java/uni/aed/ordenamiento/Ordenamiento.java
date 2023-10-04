@@ -202,4 +202,65 @@ public class Ordenamiento {
        setTiempoEjecucion(tfinal-xd);
         return X;
     }
+    
+    public Integer[] MergeSort(Integer[] X) {
+        long startTime = System.nanoTime();
+        MergeSortRecursive(X);
+        long endTime = System.nanoTime();
+
+        tiempoEjecucion = endTime - startTime;
+
+        return X;
+    }
+
+    private void MergeSortRecursive(Integer[] X) {
+        int n = X.length;
+        if (n < 2) {
+            return;
+        }
+        int mid = n / 2;
+        Integer[] left = new Integer[mid];
+        Integer[] right = new Integer[n - mid];
+        for (int i = 0; i < mid; i++) {
+            left[i] = X[i];
+        }
+        for (int i = mid; i < n; i++) {
+            right[i - mid] = X[i];
+        }
+        
+        MergeSortRecursive(left);
+        MergeSortRecursive(right);
+        
+        Merge(X, left, right);
+    }
+
+    private void Merge(Integer[] X, Integer[] left, Integer[] right) {
+        int nL = left.length;
+        int nR = right.length;
+        int i = 0, j = 0, k = 0;
+        while (i < nL && j < nR) {
+            nComparaciones++;
+            if (left[i] <= right[j]) {
+                X[k] = left[i];
+                i++;
+            } else {
+                X[k] = right[j];
+                j++;
+            }
+            k++;
+            nIntercambios++;
+        }
+        while (i < nL) {
+            X[k] = left[i];
+            i++;
+            k++;
+            nIntercambios++;
+        }
+        while (j < nR) {
+            X[k] = right[j];
+            j++;
+            k++;
+            nIntercambios++;
+        }
+    }
 }
