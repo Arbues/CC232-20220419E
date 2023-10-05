@@ -209,9 +209,12 @@ public class FrmLinkedListHeapSort extends javax.swing.JFrame {
             if(i%2==0){
                 modeloList2.addElement("¡!");
             }else{
-                String elemento=Integer.toString(Current.data);
-                modeloList2.addElement(elemento);
-                Current=Current.next;
+                if(Current != null){
+                    String elemento=Integer.toString(Current.data);
+                    modeloList2.addElement(elemento);
+                    Current=Current.next;
+                }
+                
             }
 
         }

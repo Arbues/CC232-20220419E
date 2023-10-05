@@ -3,6 +3,7 @@ maven-proyect:
 
 
 -Coonstructor del jform: debe ir todo lo que quieres que aparesca al principio de la ventana
+
 -capturar el texto: double num1= Double.parseDouble(fieldname.getText());
 -imprimir una variable en el label: labelname.setText(string.valueOf(resultado)) ---creo q es fielname
 -requestFocusInWindow(): para enfocar en un boton o en un campo
@@ -43,15 +44,22 @@ COMBOBOX: el desplegable
 	-addItem(Object item): agrega el item a la lista de opciones
 	-removeItemAt(int index): Este método elimina la opción en el índice especificado
 	-comboboxName.setSlected(flase): deseleciona el item
+
 Jlist:lista para escojer alguna
 	-getSelectedIndex(): Este método devuelve el índice del elemento seleccionado actualmente
 	-getSelectedValue(): Este método devuelve el valor del elemento seleccionado actualmente
 	-DefaultListModel modeloList1=new DefaultListModel(); con el modelo se trabaja mejor
+		.modeloList1.addElement(String);añade al final
+		.
 
 JRadioButton: para seleccionar o no
 	-isSelected():si es selecionado en ese momento
 
-
+JMenuBar:
+	-para agregarlo al JFrame: clickDerecho -> Add From Palette -> Swing Menus -> MenuBar
+	-para agregar los menus: clickDerecho -> Add Menu
+	-paar agregar los menu Items: clickDerecho -> Add From Palette -> Add MenuItem
+	-
 
 
 
