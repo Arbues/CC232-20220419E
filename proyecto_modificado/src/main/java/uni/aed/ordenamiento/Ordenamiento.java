@@ -322,38 +322,43 @@ public class Ordenamiento {
             maxHeapify(lista, tamaño, i);
         }
         for (int i = tamaño - 1; i > 0; i--) {
-            intercambiar(lista.getNodo(0), lista.getNodo(i));
+            intercambiar(lista.head, getNodo(lista, i));
             maxHeapify(lista, i, 0);
         }
         
         tEjecucion = System.currentTimeMillis() - inicio;
-    }   
-    private void maxHeapify(DoubleLinkedList lista, int tamaño, int i) {
-        int maximo = i;
-        int izquierdo = 2 * i + 1;
-        int derecho = 2 * i + 2;
+    }
 
-        if (izquierdo < tamaño && lista.getNodo(izquierdo).data > lista.getNodo(maximo).data) {
+    private void maxHeapify(DoubleLinkedList lista, int tamaño, int idx) {
+        Nodo actual = getNodo(lista, idx);
+        Nodo izquierdo = (2 * idx + 1) < tamaño ? getNodo(lista, 2 * idx + 1) : null;
+        Nodo derecho = (2 * idx + 2) < tamaño ? getNodo(lista, 2 * idx + 2) : null;
+
+        Nodo maximo = actual;
+
+        if (izquierdo != null && izquierdo.data > maximo.data) {
             maximo = izquierdo;
             nComparaciones++;
         }
-        
-        if (derecho < tamaño && lista.getNodo(derecho).data > lista.getNodo(maximo).data) {
+
+        if (derecho != null && derecho.data > maximo.data) {
             maximo = derecho;
             nComparaciones++;
         }
-        
-        if (maximo != i) {
-            intercambiar(lista.getNodo(i), lista.getNodo(maximo));
-            maxHeapify(lista, tamaño, maximo);
+
+        if (maximo != actual) {
+            intercambiar(actual, maximo);
+            maxHeapify(lista, tamaño, idxOf(lista, maximo));
         }
     }
+    
     private void intercambiar(Nodo nodo1, Nodo nodo2) {
         int temp = nodo1.data;
         nodo1.data = nodo2.data;
         nodo2.data = temp;
         nIntercambios++;
     }
+
     private int longitud(DoubleLinkedList lista) {
         int longitud = 0;
         Nodo actual = lista.head;
@@ -362,5 +367,26 @@ public class Ordenamiento {
             actual = actual.next;
         }
         return longitud;
+    }
+    
+    private Nodo getNodo(DoubleLinkedList lista, int index) {
+        Nodo actual = lista.head;
+        for (int i = 0; i < index && actual != null; i++) {
+            actual = actual.next;
+        }
+        return actual;
+    }
+
+    private int idxOf(DoubleLinkedList lista, Nodo nodo) {
+        Nodo actual = lista.head;
+        int index = 0;
+        while (actual != null) {
+            if (actual == nodo) {
+                return index;
+            }
+            index++;
+            actual = actual.next;
+        }
+        return -1;
     }
 }

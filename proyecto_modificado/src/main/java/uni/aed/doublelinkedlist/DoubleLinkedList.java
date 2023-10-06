@@ -47,13 +47,6 @@ public class DoubleLinkedList {
             }
         }
     }
-    public Nodo getNodo(int index) {
-    Nodo actual = head;
-    for (int i = 0; i < index && actual != null; i++) {
-        actual = actual.next;
-    }
-    return actual;
-}//metodo añadido
     public void clear(){
         head=null;
         ultimo=null;

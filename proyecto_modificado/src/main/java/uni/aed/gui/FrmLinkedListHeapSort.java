@@ -15,16 +15,18 @@ import uni.aed.ordenamiento.Ordenamiento;
  * @author kikhe
  */
 public class FrmLinkedListHeapSort extends javax.swing.JFrame {
+
     private final DefaultListModel modeloList1 = new DefaultListModel();
     private final DefaultListModel modeloList2 = new DefaultListModel();
     private DoubleLinkedList doubleLinkedList;
-    private final String CADENA_VACIA="";
+    private final String CADENA_VACIA = "";
+
     /**
      * Creates new form FrmLinkedListHeapSort
      */
     public FrmLinkedListHeapSort() {
         initComponents();
-        doubleLinkedList=new DoubleLinkedList();
+        doubleLinkedList = new DoubleLinkedList();
         ListaInicial.setModel(modeloList1);
         ListaOrdenada.setModel(modeloList2);
     }
@@ -189,35 +191,41 @@ public class FrmLinkedListHeapSort extends javax.swing.JFrame {
 
 
     private void BtnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOrdenarActionPerformed
-        Integer N=modeloList1.size();//aquie esta los elementos a ordenar
-        if(N<=1) return;
+        Integer N = modeloList1.size();//aquie esta los elementos a ordenar
+        if (N <= 1) {
+            return;
+        }
 
-        Ordenamiento o=new Ordenamiento();
-        Integer[] Y=null;
-        switch(cbMetodo.getSelectedIndex()){
-            case 0->{
+        Ordenamiento o = new Ordenamiento();
+        Integer[] Y = null;
+        switch (cbMetodo.getSelectedIndex()) {
+            case 0 -> {
                 o.heapSortLinkedList(doubleLinkedList);
             }
         }
 
         modeloList2.removeAllElements();
-        Nodo Current=doubleLinkedList.head;
-        for(int i=0;i<(N+1)*2;i++){
-            if(i==0 || i==N*2+1){
-                modeloList2.addElement("null");
-            }
-            if(i%2==0){
-                modeloList2.addElement("¡!");
-            }else{
-                if(Current != null){
-                    String elemento=Integer.toString(Current.data);
-                    modeloList2.addElement(elemento);
-                    Current=Current.next;
+        Nodo Current = doubleLinkedList.head;
+        modeloList2.addElement("null");  // Primera línea
+
+        if (N > 0) {
+            modeloList2.addElement("¡");  // Segunda línea
+
+            for (int i = 1; i <= N; i++) {
+                if (Current != null) {
+                    modeloList2.addElement(Integer.toString(Current.data));
+                    Current = Current.next;
                 }
-                
+                if (i != N) {
+                    modeloList2.addElement("!¡");
+                } else {
+                    modeloList2.addElement("!");
+                }
             }
 
+            modeloList2.addElement("null");  // Última línea
         }
+
 
     }//GEN-LAST:event_BtnOrdenarActionPerformed
     private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
@@ -225,13 +233,13 @@ public class FrmLinkedListHeapSort extends javax.swing.JFrame {
         modeloList2.removeAllElements();
         txtValor.setText(CADENA_VACIA);
         doubleLinkedList.clear();
-        doubleLinkedList.clear();   
+        doubleLinkedList.clear();
     }//GEN-LAST:event_BtnLimpiarActionPerformed
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
         // TODO add your handling code here:
-        int key =evt.getKeyChar();
-        boolean numero=key>=48 && key<=57;
-        if(!numero)
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+        if (!numero)
             evt.consume();
     }//GEN-LAST:event_txtValorKeyTyped
     private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
@@ -244,19 +252,20 @@ public class FrmLinkedListHeapSort extends javax.swing.JFrame {
     private void rbLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbLastActionPerformed
         rbFirst.setSelected(false);
     }//GEN-LAST:event_rbLastActionPerformed
-    private void Registrar(){
-        if (txtValor.getText().trim().isEmpty() ) return;        //
-        
-        if(rbFirst.isSelected()){
+    private void Registrar() {
+        if (txtValor.getText().trim().isEmpty()) {
+            return;        //
+        }
+        if (rbFirst.isSelected()) {
             doubleLinkedList.addFirst(Integer.parseInt(txtValor.getText()));
             modeloList1.add(0, txtValor.getText());
-        }else{
+        } else {
             doubleLinkedList.addLast(Integer.parseInt(txtValor.getText()));
             modeloList1.addElement(txtValor.getText());
         }
         txtValor.setText(CADENA_VACIA);
     }
-    
+
     /**
      * @param args the command line arguments
      */
