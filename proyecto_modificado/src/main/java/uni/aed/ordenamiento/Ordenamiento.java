@@ -316,35 +316,36 @@ public class Ordenamiento {
     //Metodo HeapSort para listas enlazadas
     public void heapSortLinkedList(DoubleLinkedList lista) {
         long inicio = System.currentTimeMillis();
+        
         int tamaño = longitud(lista);
         for (int i = tamaño / 2 - 1; i >= 0; i--) {
-            maxHeapify(lista.getNodo(i));
+            maxHeapify(lista, tamaño, i);
         }
         for (int i = tamaño - 1; i > 0; i--) {
-            intercambiar(lista.head, lista.getNodo(i));
-            maxHeapify(lista.head);
+            intercambiar(lista.getNodo(0), lista.getNodo(i));
+            maxHeapify(lista, i, 0);
         }
         
         tEjecucion = System.currentTimeMillis() - inicio;
-    }
-    private void maxHeapify(Nodo nodoActual) {
-        Nodo maximo = nodoActual;
-        Nodo izquierdo = nodoActual.next;
-        Nodo derecho = (izquierdo != null) ? izquierdo.next : null;
+    }   
+    private void maxHeapify(DoubleLinkedList lista, int tamaño, int i) {
+        int maximo = i;
+        int izquierdo = 2 * i + 1;
+        int derecho = 2 * i + 2;
 
-        if (izquierdo != null && izquierdo.data > maximo.data) {
+        if (izquierdo < tamaño && lista.getNodo(izquierdo).data > lista.getNodo(maximo).data) {
             maximo = izquierdo;
             nComparaciones++;
         }
         
-        if (derecho != null && derecho.data > maximo.data) {
+        if (derecho < tamaño && lista.getNodo(derecho).data > lista.getNodo(maximo).data) {
             maximo = derecho;
             nComparaciones++;
         }
         
-        if (maximo != nodoActual) {
-            intercambiar(nodoActual, maximo);
-            maxHeapify(maximo);
+        if (maximo != i) {
+            intercambiar(lista.getNodo(i), lista.getNodo(maximo));
+            maxHeapify(lista, tamaño, maximo);
         }
     }
     private void intercambiar(Nodo nodo1, Nodo nodo2) {
