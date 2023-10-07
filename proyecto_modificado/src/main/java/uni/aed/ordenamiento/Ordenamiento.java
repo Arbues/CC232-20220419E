@@ -313,7 +313,7 @@ public class Ordenamiento {
         return Y;
     }
     
-    //Metodo HeapSort para listas enlazadas
+    //Metodo HeapSort para listas enlazadas dobles
     public void heapSortLinkedList(DoubleLinkedList lista) {
         long inicio = System.currentTimeMillis();
         
@@ -328,7 +328,6 @@ public class Ordenamiento {
         
         tEjecucion = System.currentTimeMillis() - inicio;
     }
-
     private void maxHeapify(DoubleLinkedList lista, int tamaño, int idx) {
         Nodo actual = getNodo(lista, idx);
         Nodo izquierdo = (2 * idx + 1) < tamaño ? getNodo(lista, 2 * idx + 1) : null;
@@ -351,14 +350,12 @@ public class Ordenamiento {
             maxHeapify(lista, tamaño, idxOf(lista, maximo));
         }
     }
-    
     private void intercambiar(Nodo nodo1, Nodo nodo2) {
         int temp = nodo1.data;
         nodo1.data = nodo2.data;
         nodo2.data = temp;
         nIntercambios++;
     }
-
     private int longitud(DoubleLinkedList lista) {
         int longitud = 0;
         Nodo actual = lista.head;
@@ -368,7 +365,6 @@ public class Ordenamiento {
         }
         return longitud;
     }
-    
     private Nodo getNodo(DoubleLinkedList lista, int index) {
         Nodo actual = lista.head;
         for (int i = 0; i < index && actual != null; i++) {
@@ -376,7 +372,6 @@ public class Ordenamiento {
         }
         return actual;
     }
-
     private int idxOf(DoubleLinkedList lista, Nodo nodo) {
         Nodo actual = lista.head;
         int index = 0;
